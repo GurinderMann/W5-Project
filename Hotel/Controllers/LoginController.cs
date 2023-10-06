@@ -67,7 +67,7 @@ namespace Hotel.Controllers
         [HttpPost]
         public ActionResult Register(Users u)
         {
-            string role = "Admin";
+            string role = "User";
             string conn = ConfigurationManager.ConnectionStrings["HotelDB"].ConnectionString;
             SqlConnection sqlConnection = new SqlConnection(conn);
             try

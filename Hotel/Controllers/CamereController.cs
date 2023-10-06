@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace Hotel.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class CamereController : Controller
     {
         // GET: Camere

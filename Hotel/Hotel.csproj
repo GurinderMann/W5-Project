@@ -123,6 +123,7 @@
     <Compile Include="Controllers\AsyncController.cs" />
     <Compile Include="Controllers\CamereController.cs" />
     <Compile Include="Controllers\ClientiController.cs" />
+    <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ServiziController.cs" />
@@ -204,6 +205,7 @@
     <Content Include="Views\Async\PrenotazioniCliente.cshtml" />
     <Content Include="Views\Async\Index.cshtml" />
     <Content Include="Views\Login\Register.cshtml" />
+    <Content Include="Views\Default\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

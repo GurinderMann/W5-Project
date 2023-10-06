@@ -18,21 +18,23 @@
             </button>
             <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
                 <ul class="navbar-nav flex-grow-1">
-                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Clienti", "Index", "Clienti", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Aggiungi Servizio", "NuovoServizio", "Servizi", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Camere", "Index", "Camere", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>
-                        @Html.ActionLink("Ricerca", "Index", "Async", new { area = "" }, new { @class = "nav-link" })</li>
+                    
                     @if (User.Identity.IsAuthenticated)
                     {
-                    <li>@Html.ActionLink("Logout", "Logout", "Login", new { area = "" }, new { @class = "nav-link" }) </li>
-                }
-                else
-                {
-                    <li>@Html.ActionLink("Login", "Login", "Login", new { area = "" }, new { @class = "nav-link" }) </li>
-                }
-                </ul>
+                        <li>@Html.ActionLink("Logout", "Logout", "Login", new { area = "" }, new { @class = "nav-link" }) </li>
+                        <li > @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Clienti", "Index", "Clienti", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Aggiungi Servizio", "NuovoServizio", "Servizi", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Camere", "Index", "Camere", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>
+                            @Html.ActionLink("Ricerca", "Index", "Async", new { area = "" }, new { @class = "nav-link" })
+                        </li>
+                        }
+                        else
+                        {
+                        <li>@Html.ActionLink("Login", "Login", "Login", new { area = "" }, new { @class = "nav-link" }) </li>
+                        }
+                    </ul>
             </div>
         </div>
     </nav>
