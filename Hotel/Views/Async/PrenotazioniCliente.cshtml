@@ -1,0 +1,44 @@
+﻿@model List<Hotel.Models.Prenotazioni>
+
+@{
+    ViewBag.Title = "PrenotazioniCliente";
+}
+
+<h2>Prenotazioni Cliente</h2>
+
+@if (Model.Count == 0)
+{
+    <p>Nessuna prenotazione trovata per questo cliente.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID Prenotazione</th>
+                <th>Data Prenotazione</th>
+                <th>Anno</th>
+                <th>Data Arrivo</th>
+                <th>Data Partenza</th>
+                <th>Caparra</th>
+                <th>Tariffa</th>
+                <th>Pensione</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var prenotazione in Model)
+            {
+                <tr>
+                    <td>@prenotazione.IdPrenotazione</td>
+                    <td>@prenotazione.DataPrenotazione.ToShortDateString()</td>
+                    <td>@prenotazione.Anno</td>
+                    <td>@prenotazione.DataArrivo.ToShortDateString()</td>
+                    <td>@prenotazione.DataPartenza.ToShortDateString()</td>
+                    <td>@prenotazione.Caparra</td>
+                    <td>@prenotazione.Tariffa</td>
+                    <td>@prenotazione.Pensione</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

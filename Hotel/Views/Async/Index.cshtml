@@ -1,0 +1,108 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Ricerca Prenotazioni per Codice Fiscale</h2>
+
+<div class="form-group">
+    <label for="codiceFiscaleInput">Inserisci il Codice Fiscale:</label>
+    <input type="text" class="form-control" id="codiceFiscaleInput" placeholder="Codice Fiscale">
+</div>
+
+<button id="searchButton" class="btn btn-primary">Cerca Prenotazioni</button>
+
+<button id="pensioneCompletaButton" class="btn btn-secondary">Cerca Pensione Completa</button>
+
+<div id="details">
+
+</div>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+
+            var codiceFiscaleInput = $("#codiceFiscaleInput");
+            var details = $("#details");
+
+            $("#searchButton").click(function () {
+                var codiceFiscale = codiceFiscaleInput.val();
+
+                $.ajax({
+                    url: "/Async/PrenotazioniCliente",
+                    type: "GET",
+                    data: { codiceFiscale: codiceFiscale },
+                    success: function (data) {
+                        details.empty();
+
+                        if (data.length === 0) {
+                            details.html("Nessuna prenotazione trovata per il codice fiscale specificato.");
+                            return;
+                        }
+
+                        var ul = $("<ul>");
+
+                        $.each(data, function (i, reservation) {
+                            var li = $("<li>").text(
+                                "ID: " + reservation.IdPrenotazione +
+                                ", Data Prenotazione: " + reservation.DataP +
+                                ", Anno: " + reservation.Anno +
+                                ", Data Arrivo: " + reservation.DataA +
+                                ", Data Partenza: " + reservation.DataPr +
+                                ", Caparra: " + reservation.Caparra +
+                                ", Tariffa: " + reservation.Tariffa +
+                                ", Pensione: " + reservation.Pensione
+                            );
+                            ul.append(li);
+                        });
+
+                        details.append(ul);
+                    },
+                    error: function (error) {
+                        console.error("Errore durante la ricerca delle prenotazioni: " + error);
+                        details.html("Si è verificato un errore durante la ricerca delle prenotazioni.");
+                    }
+                });
+            });
+
+          
+            $("#pensioneCompletaButton").click(function () {
+                $.ajax({
+                    url: "/Async/PensioneCompleta",
+                    type: "GET",
+                    success: function (data) {
+                        details.empty();
+
+                        if (data.length === 0) {
+                            details.html("Nessuna prenotazione trovata per la pensione completa.");
+                            return;
+                        }
+
+                        var ul = $("<ul>");
+
+                        $.each(data, function (i, reservation) {
+                            var li = $("<li>").text(
+                                "ID: " + reservation.IdPrenotazione +
+                                ", Data Prenotazione: " + reservation.DataP +
+                                ", Anno: " + reservation.Anno +
+                                ", Data Arrivo: " + reservation.DataA +
+                                ", Data Partenza: " + reservation.DataPr +
+                                ", Caparra: " + reservation.Caparra +
+                                ", Tariffa: " + reservation.Tariffa +
+                                ", Pensione: " + reservation.Pensione
+                            );
+                            ul.append(li);
+                        });
+
+                        details.append(ul);
+                    },
+                    error: function (error) {
+                        console.error("Errore durante la ricerca delle prenotazioni: " + error);
+                        details.html("Si è verificato un errore durante la ricerca delle prenotazioni.");
+                    }
+                });
+            });
+        });
+    </script>
+}

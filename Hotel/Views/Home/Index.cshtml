@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Hotel.Models.Prenotazioni>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+
+<a href="@Url.Action("NuovaPrenotazione", "Home" )" class="btn btn-outline-dark mb-5">Crea una nuova prenotazione</a>
+<table class="table table-striped table-bordered text-center">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Data Prenotazione</th>
+            <th>Anno</th>
+            <th>Data Arrivo</th>
+            <th>Data Partenza</th>
+            <th>Caparra</th>
+            <th>Tariffa</th>
+            <th>Pensione</th>
+            <th>Modifica</th>
+            <th>Servizi Forniti</th>
+            <th>Check-out</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Hotel.Models.Prenotazioni p in Model)
+        {
+            <tr>
+                <td>@p.IdPrenotazione</td>
+                <td>@p.DataPrenotazione.ToShortDateString()</td>
+                <td>@p.Anno</td>
+                <td>@p.DataArrivo.ToShortDateString()</td>
+                <td>@p.DataPartenza.ToShortDateString()</td>
+                <td>@p.Caparra.ToString("C")</td>
+                <td>@p.Tariffa.ToString("C")</td>
+                <td>@p.Pensione</td>
+
+                <td><a href="@Url.Action("ModificaPrenotazione", "Home", new { IdPrenotazione = p.IdPrenotazione })" class="btn btn-outline-warning">Modifica</a></td>
+                <td><a href="@Url.Action("Index", "Servizi", new { IdS= p.IdPrenotazione })" class="btn btn-outline-info">Servizi</a></td>
+                <td><a href="@Url.Action("DettagliPrenotazione", "Home", new { IdPrenotazione = p.IdPrenotazione })" class="btn btn-outline-success">Check-out</a></td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Hotel.Models.Camere>
+@{
+    ViewBag.Title = "Index";
+}
+
+<a href="@Url.Action("NuovoCamera", "Camere" )" class="btn btn-outline-dark mb-5">Crea una nuova Camera</a>
+<table class="table table-striped table-bordered text-center">
+    <thead>
+        <tr>
+          
+            <th>Numero Camera</th>
+            <th>Descrizione</th>
+            <th>Tipo</th>
+            <th>Modifica</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Hotel.Models.Camere c in Model)
+        {
+            <tr>
+                <td>@c.NrCamera</td>
+                <td>@c.Descrizione</td>
+                <td>@c.Tipo</td>
+                <td><a href="@Url.Action("ModificaCamera", "Camere",  new { IdCamera = c.IdCamera })" class="btn btn-outline-warning">Modifica</a></td>
+
+               
+            </tr>
+        }
+    </tbody>
+</table>
+

@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Hotel.Models.Clienti>
+@{
+    ViewBag.Title = "Index";
+}
+
+<a href="@Url.Action("NuovoCliente", "Clienti" )" class="btn btn-outline-dark mb-5">Aggiungi un nuovo cliente</a>
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>CODICE FISCALE</th>
+            <th>COGNOME</th>
+            <th>NOME</th>
+            <th>CITTÀ</th>
+            <th>PROVINCIA</th>
+            <th>EMAIL</th>
+            <th>CELLULARE</th>
+            <th>MODIFICA</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(Hotel.Models.Clienti c in Model)
+        {
+            <tr>
+                <td>@c.CF</td>
+                <td>@c.Cognome</td>
+                <td>@c.Nome</td>
+                <td>@c.Citta</td>
+                <td>@c.Provincia</td>
+                <td>@c.Email</td>
+                <td>@c.Cellulare</td>
+                
+
+                <td><a href="@Url.Action("ModificaCliente", "Clienti",  new { IdCliente = c.IdCliente })" class="btn btn-outline-warning">Modifica</a></td>
+              
+            </tr>
+        }
+    </tbody>
+</table>
+

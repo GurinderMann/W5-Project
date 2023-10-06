@@ -1,0 +1,75 @@
+﻿
+@model IEnumerable<Hotel.Models.Servizi>
+
+@{
+    ViewBag.Title = "DettagliPrenotazione";
+}
+
+<div class="card">
+    <div class="card-body">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title">Dettagli Prenotazione</h2>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <strong>Numero di stanza:</strong> @ViewBag.NumeroStanza
+                        </div>
+                        <div class="form-group">
+                            <strong>Data di arrivo:</strong> @ViewBag.DataArrivo
+                        </div>
+                        <div class="form-group">
+                            <strong>Data di partenza:</strong> @ViewBag.DataPartenza
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <strong>Caparra:</strong> @string.Format("{0:C}", ViewBag.Caparra)
+                        </div>
+                        <div class="form-group">
+                            <strong>Tariffa applicata:</strong> @string.Format("{0:C}", ViewBag.TariffaApplicata)
+                        </div>
+                        <div class="form-group">
+                            <strong>Somma dei servizi aggiuntivi:</strong> @string.Format("{0:C}", ViewBag.SommaServiziAggiuntivi)
+                        </div>
+                        <div class="form-group">
+                            <strong>Importo da saldare:</strong> @string.Format("{0:C}", ViewBag.ImportoDaSaldare)
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        <h2 class="card-title mt-3">Servizi Forniti</h2>
+
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Data del Servizio</th>
+                    <th>Descrizione</th>
+                    <th>Quantità</th>
+                    <th>Prezzo</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Hotel.Models.Servizi s in Model)
+
+                {
+                    <tr>
+                        <td>@s.DataServizio.ToShortDateString()</td>
+                        <td>@s.Descrizione</td>
+                        <td>@s.Quantita</td>
+                        <td>@s.Prezzo.ToString("C")</td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+
+        @Html.ActionLink("Torna alla lista", "Index")
+
+    </div>
+</div>
